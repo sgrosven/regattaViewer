@@ -1,0 +1,29 @@
+
+<h2>regatta file: {{regattaFileName}}</h2>
+<h2>name:{{regattaJson.$.Name}}</h2>
+<h2>host club:{{regattaJson.$.HostClub}}</h2>
+
+<table>
+    <thead>
+    <tr>
+        <th>Pos</th>
+        <th>Points</th>
+        <th>Sail</th>
+        <th>Skipper</th>
+        <th>Crew1</th>
+        <th>Crew2</th>
+
+    </tr>
+    </thead>
+    <tbody>
+    <tr ng-repeat="s in regattaModel.getSeries() | orderBy : Pos">
+        <td>{{s.$.Pos}}</td>
+        <td>{{s.$.Pts}}</td>
+        <td>{{s.entry.Boat.$.SailId}}</td>
+        <td>{{s.entry.Skipper.$.FirstName}} {{s.entry.Skipper.$.LastName}}</td>
+        <td ng-repeat="c in s.entry.CrewList.Crew">
+            {{c.$.FirstName}} {{c.$.LastName}}
+        </td>
+    </tr>
+    </tbody>
+</table>
